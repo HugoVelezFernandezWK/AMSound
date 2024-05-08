@@ -2153,12 +2153,11 @@ public class CadAMSound {
      * Lee todos los registros de una misma voz
      * 
      * @param pIdVoz ID de voz
-     * @param pIdPieza ID de pieza musical
      * @param leerFKs Permite elegir si leer las claves foraneas
      * @return Lista de recursos
      * @throws ExcepcionAMSound Se produce cuando sucede un error inesperado
      */
-    public ArrayList<Recurso> leerRecursosDeVoz(Integer pIdVoz, Integer pIdPieza, boolean leerFKs) throws ExcepcionAMSound{
+    public ArrayList<Recurso> leerRecursosDeVoz(Integer pIdVoz, boolean leerFKs) throws ExcepcionAMSound{
         
         ArrayList<Recurso> recursos = new ArrayList<>();
         
@@ -2174,8 +2173,7 @@ public class CadAMSound {
                     "JOIN " +
                     "    VOZ V ON R.VOZ_DE_RECURSO = V.ID " +
                     "WHERE " +
-                    "    V.ID = "+ pIdVoz +" AND " +
-                    "    R.PIEZA_DE_RECURSO = " + pIdPieza;
+                    "    V.ID = "+ pIdVoz;
         
         try {
             
@@ -2390,7 +2388,7 @@ public class CadAMSound {
     public static void main(String args[]){
         try {
             CadAMSound c = new CadAMSound("localhost", "AMSound", "Tutuyoxwk.12");
-            System.out.println(c.eliminarUsuarioDeVoz(2, 3));
+            System.out.println(c.leerAgrupacionesDeUsuario(2));
         } catch (ExcepcionAMSound ex) {
             System.out.println(ex);
         }
