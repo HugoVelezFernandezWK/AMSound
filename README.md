@@ -17,5 +17,11 @@ e identificarte con tu cuenta de Git, una vez realizado este paso ya tendrás cl
 componente de acceso a datos y una excepción personalizada para unificar los errores que puedan suceder en el componente.</p>
 
 ## 02 - Permitir la visualización de errores en el panel
-<p>Para este apartado es necesario poder visualizar los errores que se produzcan en a ejecución de aplicativo, para eso tuve que modificar el controlador para capturar las excepciones, crear un metodo que añada los datos de la excepción al JSON que contiene los
+<p>Para este apartado es necesario poder visualizar los errores que se produzcan en la ejecución de aplicativo, para eso tuve que modificar el controlador para capturar las excepciones, crear un metodo que añada los datos de la excepción al JSON que contiene los
 datos que posteriormente se muestra en el panel, y por ultimo, crear una apartado en el panel donde se mostrarán los errores en caso de que se produzcan. De esta forma se trasportan los errores a la capa de presentación y aporta información adicional al usuario.</p>
+
+## 08 - Permitir cargar archivos a la base de datos
+<p>Para este apartado tuve que crear una nueva tabla que permita almacenar archivos (BLOB), posteriormente hice un pequeño apartado en el panel principal que permita al usuario seleccionar un archivo, a partir del archivo seleccionado se mandan los datos al controlador
+y este accede a un metodo que inserta a la base de datos un nuevo registro con el archivo seleccionado.</p>
+
+* **Nota:** En web es imposible conocer la ruta de un archivo por motivos de seguridad por lo que he optado por, desde javascript, leer el contenido del archivo y su nombre, y ya desde el controlador en java he creado un objeto File con los datos del archivo seleccionado.
