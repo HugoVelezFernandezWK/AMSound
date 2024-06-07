@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class ClienteC {
     
     private Socket socketCliente;
-    private static final int PUERTO = 6221;
+    private static final int PUERTO = 13221;
     private static final int TIMEOUT = 5000;
     
     public ClienteC(String ip) throws ExcepcionAMSound {
@@ -677,8 +677,8 @@ public class ClienteC {
             //c.eliminarUsuario(2);
             //System.out.println(c.leerUsuario(1));
             
-            ClienteC c = new ClienteC("192.168.1.75");
-            System.out.println(c.leerAgrupacionesDeUsuario(2));
+            ClienteC c = new ClienteC("192.168.1.13");
+            System.out.println(c.leerUsuario(1));
             
         } catch (Exception ex) {
             ex.printStackTrace();

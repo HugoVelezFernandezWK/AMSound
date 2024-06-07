@@ -2,8 +2,10 @@
 package Comunicacion;
 
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Enumeration;
 
 /**
  * Servidor de comunicaciones para la aplicación AMSound
@@ -13,7 +15,7 @@ public class ServidorC extends Thread {
     
     private ServerSocket servidor;
     private Socket conexion;
-    public static final int PUERTO = 6221;
+    public static final int PUERTO = 13221;
     
     /**
      * Constructor vacio | Valores por defecto
@@ -24,8 +26,17 @@ public class ServidorC extends Thread {
     public void run(){
         
         try {
-//            InetAddress ia = InetAddress.getByName("localhost");
-//            System.err.println("Servidor: " + ia.getHostAddress());
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface ni = interfaces.nextElement();
+                Enumeration<InetAddress> inetAddresses = ni.getInetAddresses();
+                while (inetAddresses.hasMoreElements()) {
+                    InetAddress ia = inetAddresses.nextElement();
+                    if (!ia.isLoopbackAddress() && ia.isSiteLocalAddress()) {
+                        System.out.println("IP privada: " + ia.getHostAddress());
+                    }
+                }
+            }
 //            
             servidor = new ServerSocket(PUERTO);
             while(true){
