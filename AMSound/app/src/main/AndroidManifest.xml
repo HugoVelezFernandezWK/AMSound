@@ -22,7 +22,7 @@
             android:name=".PanelUsuario"
             android:exported="false" />
         <activity
-            android:name=".ui.Usuario"
+            android:name=".ui.usuario.PanelUsuarioFragment"
             android:exported="false" />
         <activity
             android:name=".PiezaMusical"

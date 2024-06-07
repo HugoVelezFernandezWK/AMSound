@@ -40,18 +40,12 @@ public class HomeFragment extends Fragment {
         agrupaciones = new ArrayList<>();
 
         try{
-            Thread t1 = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    recogerDatosBD();
-                }
-            });
-
+            Thread t1 = new Thread(() -> recogerDatosBD());
             t1.start();
             t1.join();
 
-            nombreUsuarioNavMenu.setText(usuarioRegistrado.getNombre());
-            mailUsuarioNavMenu.setText(usuarioRegistrado.getMail());
+            //nombreUsuarioNavMenu.setText(usuarioRegistrado.getNombre());
+            //mailUsuarioNavMenu.setText(usuarioRegistrado.getMail());
 
         }catch (Exception ex){
             Log.d("ERROBDTH", ex.toString());
@@ -70,7 +64,7 @@ public class HomeFragment extends Fragment {
     private void recogerDatosBD(){
         try {
             ClienteC c = new ClienteC(ClienteC.IP_SERVIDOR);
-            usuarioRegistrado = c.leerUsuario(2);
+            usuarioRegistrado = c.leerUsuario(1);
 
             ClienteC c2 = new ClienteC(ClienteC.IP_SERVIDOR);
             agrupaciones = c2.leerAgrupacionesDeUsuario(usuarioRegistrado.getId());

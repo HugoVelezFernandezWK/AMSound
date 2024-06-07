@@ -1,6 +1,8 @@
 
 package es.amsound.ui.utilidades;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -22,77 +24,75 @@ import POJOS.Voz;
  * @author Hugo Vélez Fernández
  */
 public class ClienteC {
-    
-    private Socket socketCliente;
-    private static final int PUERTO = 6221;
-    private static final int TIMEOUT = 5000;
 
-    public static final String IP_SERVIDOR = "192.168.1.75";
-    
+    private Socket socketCliente;
+    private static final int PUERTO = 13221;
+    private static final int TIMEOUT = 20000;
+
+    public static final String IP_SERVIDOR = "192.168.18.48";
+
     public ClienteC(String ip) throws ExcepcionAMSound {
         try {
             //System.out.println("Estableciendo la conexion con el servidor");
             socketCliente = new Socket(ip, PUERTO);
             socketCliente.setSoTimeout(TIMEOUT);
-            
+
         } catch (Exception ex) {
             manejadorException(ex);
         }
     }
-    
+
     private void manejadorIOException(IOException ex) throws ExcepcionAMSound {
         ExcepcionAMSound e = new ExcepcionAMSound();
-        e.setMensajeUsuario("Fallo en las comunicaciones. Consulte con el administradora");
+        e.setMensajeUsuario("Fallo en las comunicaciones. Consulte con el administrador");
         e.setMensajeErrorBD(ex.getMessage());
         throw e;
     }
- 
+
     private void manejadorClassNotFoundException(ClassNotFoundException ex) throws ExcepcionAMSound {
         ExcepcionAMSound e = new ExcepcionAMSound();
         e.setMensajeUsuario("Error general en el sistema. Consulte con el administrador");
         e.setMensajeErrorBD(ex.getMessage());
         throw e;
     }
-    
+
     private void manejadorException(Exception ex) throws ExcepcionAMSound {
         ExcepcionAMSound e = new ExcepcionAMSound();
         e.setMensajeUsuario("Error general en el sistema. Consulte con el administrador");
         e.setMensajeErrorBD(ex.getMessage());
         throw e;
     }
-    
+
     public int insertarUsuario(Usuario usuario) throws ExcepcionAMSound {
-        
+
         Peticion p = new Peticion();
         p.setIdPeticion(Operaciones.INSERTAR_USUARIO);
         p.setEntidad(usuario);
         Respuesta r = null;
         int cantidad = 0;
-        
+
         try {
             ObjectOutputStream oos = new ObjectOutputStream(socketCliente.getOutputStream());
             oos.writeObject(p);
-            
+
             ObjectInputStream ois = new ObjectInputStream(socketCliente.getInputStream());
             r = (Respuesta) ois.readObject();
 
             ois.close();
             oos.close();
-            
-            socketCliente.close();
-            
+
             if(r.getCantidad() != null)
                 cantidad = r.getCantidad();
             else if(r.getE() != null)
                 throw r.getE();
-            
-            
+
+
         } catch (IOException ex) {
             manejadorIOException(ex);
         } catch (ClassNotFoundException ex) {
             manejadorClassNotFoundException(ex);
         }
-                    
+
         return cantidad;
     }
 
@@ -128,43 +128,41 @@ public class ClienteC {
 
         return cantidad;
     }
-    
+
     public int modificarUsuario(Integer id, Usuario usuario) throws ExcepcionAMSound {
-        
+
         ArrayList<Object> entidades = new ArrayList<>();
         entidades.add(id);
         entidades.add(usuario);
-        
+
         Peticion p = new Peticion();
         p.setIdPeticion(Operaciones.MODIFICAR_USUARIO);
         p.setEntidad(entidades);
         Respuesta r = null;
         int cantidad = 0;
-        
+
         try {
             ObjectOutputStream oos = new ObjectOutputStream(socketCliente.getOutputStream());
             oos.writeObject(p);
-            
+
             ObjectInputStream ois = new ObjectInputStream(socketCliente.getInputStream());
             r = (Respuesta) ois.readObject();
 
             ois.close();
             oos.close();
-            
-            socketCliente.close();
-            
+
             if(r.getCantidad() != null)
                 cantidad = r.getCantidad();
             else if(r.getE() != null)
                 throw r.getE();
-            
-            
+
+
         } catch (IOException ex) {
             manejadorIOException(ex);
         } catch (ClassNotFoundException ex) {
             manejadorClassNotFoundException(ex);
         }
-                    
+
         return cantidad;
     }
 
@@ -335,7 +333,6 @@ public class ClienteC {
         return cantidad;
     }
 
-
     public int eliminarRecurso(Integer id) throws ExcepcionAMSound {
 
         Peticion p = new Peticion();
@@ -425,8 +422,12 @@ public class ClienteC {
             else if(r.getE() != null)
                 throw r.getE();
 
+            Log.d("Otro", usuario.toString());
+            Log.d("Otro", r.toString());
+
 
         } catch (IOException ex) {
+            Log.d("Otro", ex.toString());
             manejadorIOException(ex);
         } catch (ClassNotFoundException ex) {
             manejadorClassNotFoundException(ex);
@@ -434,38 +435,36 @@ public class ClienteC {
 
         return usuario;
     }
-    
+
     public ArrayList<Usuario> leerUsuarios() throws ExcepcionAMSound {
-            
+
         Peticion p = new Peticion();
         p.setIdPeticion(Operaciones.LEER_USUARIOS);
         Respuesta r = null;
         ArrayList<Usuario> listaUsuarios = null;
-        
+
         try {
             ObjectOutputStream oos = new ObjectOutputStream(socketCliente.getOutputStream());
             oos.writeObject(p);
-            
+
             ObjectInputStream ois = new ObjectInputStream(socketCliente.getInputStream());
             r = (Respuesta) ois.readObject();
 
             ois.close();
             oos.close();
-            
-            //socketCliente.close();
-            
+
             if(r.getEntidad() != null)
                 listaUsuarios = (ArrayList<Usuario>) r.getEntidad();
             else if(r.getE() != null)
                 throw r.getE();
-            
-            
+
+
         } catch (IOException ex) {
             manejadorIOException(ex);
         } catch (ClassNotFoundException ex) {
             manejadorClassNotFoundException(ex);
         }
-                    
+
         return listaUsuarios;
     }
 
@@ -619,8 +618,6 @@ public class ClienteC {
 
             ois.close();
             oos.close();
-
-            //socketCliente.close();
 
             if(r.getEntidad() != null)
                 listaAgrupaciones = (ArrayList<Agrupacion>) r.getEntidad();
