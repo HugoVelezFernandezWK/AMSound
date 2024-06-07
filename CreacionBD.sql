@@ -93,33 +93,61 @@ CREATE SEQUENCE SEQ_VOZ INCREMENT BY 1 START WITH 10 MAXVALUE 999999 CYCLE;
 CREATE SEQUENCE SEQ_COMPONENTE_VOZ INCREMENT BY 1 START WITH 10 MAXVALUE 999999 CYCLE;
 CREATE SEQUENCE SEQ_RECURSO INCREMENT BY 1 START WITH 10 MAXVALUE 99999999 CYCLE;
 
-INSERT INTO "AMSOUND"."USUARIO" (ID, NOMBRE, MAIL, TELEFONO, CONTRASENA, FOTO) VALUES (1, 'Juan Antonio Diaz', 'juanantoniodiaz@gmail.com', '663142315', '1234', NULL);
-INSERT INTO "AMSOUND"."USUARIO" (ID, NOMBRE, MAIL, TELEFONO, CONTRASENA, FOTO) VALUES (2, 'Hugo Vélez Fernández', 'hugovfwk@gmail.com', '603441021', 'kk', NULL);
-INSERT INTO "AMSOUND"."USUARIO" (ID, NOMBRE, MAIL, TELEFONO, CONTRASENA, FOTO) VALUES (3, 'Andrea', 'andrea@gmail.com', NULL, '1234', NULL);
-INSERT INTO "AMSOUND"."USUARIO" (ID, NOMBRE, MAIL, TELEFONO, CONTRASENA, FOTO) VALUES (4, 'Clemente', 'clemente@gmail.com', NULL, '1234', NULL);
-INSERT INTO "AMSOUND"."USUARIO" (ID, NOMBRE, MAIL, TELEFONO, CONTRASENA, FOTO) VALUES (5, 'Andres', 'andres@gmail.com', NULL, '1234', NULL);
-INSERT INTO "AMSOUND"."USUARIO" (ID, NOMBRE, MAIL, TELEFONO, CONTRASENA, FOTO) VALUES (6, 'Jorge', 'jorje@gmail.com', NULL, '1234', NULL);
+-- Datos para la tabla USUARIO
+INSERT INTO USUARIO (ID, NOMBRE, MAIL, TELEFONO, CONTRASENA, FOTO) VALUES
+(1, 'Juan Perez', 'juan.perez@example.com', '123456789', 'kk', null),
+(2, 'Maria Gomez', 'maria.gomez@example.com', '234567890', 'kk', null),
+(3, 'Carlos Lopez', 'carlos.lopez@example.com', '345678901', 'kk', null),
+(4, 'Ana Fernandez', 'ana.fernandez@example.com', '456789012', 'kk', null),
+(5, 'Luis Martinez', 'luis.martinez@example.com', '567890123', 'kk', null);
 
-INSERT INTO "AMSOUND"."AGRUPACION" (ID, NOMBRE, CONTACTO, TEXTO, FOTO, DIRECTOR_DE_AGRUPACION) VALUES (1,'AM Buena Muerte (Ayamonte)', 'ambuenamuerteayamonte@gmail.com', NULL, NULL, 1);
-INSERT INTO "AMSOUND"."AGRUPACION" (ID, NOMBRE, CONTACTO, TEXTO, FOTO, DIRECTOR_DE_AGRUPACION) VALUES (2,'AM Buena Muerte (Ayamonte) 2', 'ambuenamuerteayamonte2@gmail.com', NULL, NULL, 2);
+-- Datos para la tabla AGRUPACION
+INSERT INTO AGRUPACION (ID, NOMBRE, CONTACTO, TEXTO, FOTO, DIRECTOR_DE_AGRUPACION) VALUES
+(1, 'Coro Universitario', 'contacto@coro-universitario.com', 'Coro de la universidad', null, 1),
+(2, 'Banda Sinfónica', 'contacto@banda-sinfonica.com', 'Banda sinfónica de la ciudad', null, 2),
+(3, 'Orquesta Filarmónica', 'contacto@orquesta-filarmonica.com', 'Orquesta filarmónica nacional', null, 3);
 
-INSERT INTO "AMSOUND"."VOZ" (ID, NOMBRE, TEXTO, VOZ_DE_AGRUPACION) VALUES (1, 'Trompeta 1º', NULL, 1);
-INSERT INTO "AMSOUND"."VOZ" (ID, NOMBRE, TEXTO, VOZ_DE_AGRUPACION) VALUES (2, 'Corneta 1º', NULL, 1);
-INSERT INTO "AMSOUND"."VOZ" (ID, NOMBRE, TEXTO, VOZ_DE_AGRUPACION) VALUES (3, 'Corneta 2º', NULL, 1);
-INSERT INTO "AMSOUND"."VOZ" (ID, NOMBRE, TEXTO, VOZ_DE_AGRUPACION) VALUES (4, 'Tambor', NULL, 1);
-INSERT INTO "AMSOUND"."VOZ" (ID, NOMBRE, TEXTO, VOZ_DE_AGRUPACION) VALUES (5, 'Tuba', NULL, 1);
+-- Datos para la tabla PIEZA_MUSICAL
+INSERT INTO PIEZA_MUSICAL (ID, NOMBRE, AUTOR, TEXTO, PIEZA_DE_AGRUPACION) VALUES
+(1, 'Sinfonía No. 5', 'Ludwig van Beethoven', 'Sinfonía en do menor', 3),
+(2, 'Canon en Re', 'Johann Pachelbel', 'Canon clásico', 2),
+(3, 'Oda a la Alegría', 'Friedrich Schiller', 'Himno a la alegría', 1);
 
-INSERT INTO "AMSOUND"."PIEZA_MUSICAL" (ID, NOMBRE, AUTOR, TEXTO, PIEZA_DE_AGRUPACION) VALUES (1, 'Tras de Ti Mi Cautivo', 'José Manuel Sánchez Molero', NULL, 1);
-INSERT INTO "AMSOUND"."PIEZA_MUSICAL" (ID, NOMBRE, AUTOR, TEXTO, PIEZA_DE_AGRUPACION) VALUES (2, 'Eres Mi Bendicion', 'José Manuel Sánchez Molero', NULL, 1);
-INSERT INTO "AMSOUND"."PIEZA_MUSICAL" (ID, NOMBRE, AUTOR, TEXTO, PIEZA_DE_AGRUPACION) VALUES (3, 'El legado de un maestro', 'José Manuel Sánchez Molero', NULL, 1);
-INSERT INTO "AMSOUND"."PIEZA_MUSICAL" (ID, NOMBRE, AUTOR, TEXTO, PIEZA_DE_AGRUPACION) VALUES (4, 'A Tus Pies Señora', 'José Manuel Sánchez Molero', NULL, 1);
+-- Datos para la tabla VOZ
+INSERT INTO VOZ (ID, NOMBRE, TEXTO, VOZ_DE_AGRUPACION) VALUES
+(1, 'Soprano', 'Voz aguda femenina', 1),
+(2, 'Alto', 'Voz media femenina', 1),
+(3, 'Tenor', 'Voz aguda masculina', 1),
+(4, 'Bajo', 'Voz grave masculina', 1),
+(5, 'Soprano', 'Voz aguda femenina', 2),
+(6, 'Alto', 'Voz media femenina', 2),
+(7, 'Tenor', 'Voz aguda masculina', 2),
+(8, 'Bajo', 'Voz grave masculina', 2),
+(9, 'Soprano', 'Voz aguda femenina', 3),
+(10, 'Alto', 'Voz media femenina', 3),
+(11, 'Tenor', 'Voz aguda masculina', 3),
+(12, 'Bajo', 'Voz grave masculina', 3);
 
-INSERT INTO "AMSOUND"."RECURSO" (ID, TITULO, RUTA_ARCHIVO, TEXTO, VOZ_DE_RECURSO, PIEZA_DE_RECURSO) VALUES (1, 'Partitura Tras de Ti Mi Cautivo Corneta 1', 'trasdetimicautivo_corneta1.jpg', NULL, 2, 1);
-INSERT INTO "AMSOUND"."RECURSO" (ID, TITULO, RUTA_ARCHIVO, TEXTO, VOZ_DE_RECURSO, PIEZA_DE_RECURSO) VALUES (2, 'Partitura Tras de Ti Mi Cautivo Corneta 2', 'trasdetimicautivo_corneta2.jpg', NULL, 3, 1);
-INSERT INTO "AMSOUND"."RECURSO" (ID, TITULO, RUTA_ARCHIVO, TEXTO, VOZ_DE_RECURSO, PIEZA_DE_RECURSO) VALUES (3, 'Partitura Tras de Ti Mi Cautivo Trompeta 1', '/trasdetimicautivo_trompeta1.mp3', NULL, 1, 1);
+-- Datos para la tabla RECURSO
+INSERT INTO RECURSO (ID, TITULO, RUTA_ARCHIVO, TEXTO, VOZ_DE_RECURSO, PIEZA_DE_RECURSO) VALUES
+(1, 'Recurso 1', '/recursos/recurso1.mp3', 'Recurso de prueba 1', 1, 1),
+(2, 'Recurso 2', '/recursos/recurso2.mp3', 'Recurso de prueba 2', 2, 2),
+(3, 'Recurso 3', '/recursos/recurso3.mp3', 'Recurso de prueba 3', 3, 3),
+(4, 'Recurso 4', '/recursos/recurso4.mp3', 'Recurso de prueba 4', 4, 1),
+(5, 'Recurso 5', '/recursos/recurso5.mp3', 'Recurso de prueba 5', 5, 2),
+(6, 'Recurso 6', '/recursos/recurso6.mp3', 'Recurso de prueba 6', 6, 3);
 
-INSERT INTO "AMSOUND"."COMPONENTE_VOZ" (ID, USUARIO_COMPONENTE, VOZ) VALUES (1, 2, 3);
-INSERT INTO "AMSOUND"."COMPONENTE_VOZ" (ID, USUARIO_COMPONENTE, VOZ) VALUES (2, 3, 2);
-INSERT INTO "AMSOUND"."COMPONENTE_VOZ" (ID, USUARIO_COMPONENTE, VOZ) VALUES (3, 4, 1);
-INSERT INTO "AMSOUND"."COMPONENTE_VOZ" (ID, USUARIO_COMPONENTE, VOZ) VALUES (4, 5, 4);
-INSERT INTO "AMSOUND"."COMPONENTE_VOZ" (ID, USUARIO_COMPONENTE, VOZ) VALUES (5, 6, 5);
+-- Datos para la tabla COMPONENTE_VOZ
+INSERT INTO COMPONENTE_VOZ (ID, USUARIO_COMPONENTE, VOZ) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3),
+(4, 4, 4),
+(5, 1, 5),
+(6, 2, 6),
+(7, 3, 7),
+(8, 4, 8),
+(9, 5, 9),
+(10, 1, 10),
+(11, 2, 11),
+(12, 3, 12);
